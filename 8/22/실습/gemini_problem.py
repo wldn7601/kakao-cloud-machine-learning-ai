@@ -53,11 +53,14 @@ scores1 = [88, 92, 75, 100, 65]
 scores2 = []
 
 def get_score_stats(score_list):
+    # 리스트가 비어 있으면 None
     if not score_list:
         return None
+    # 리스트가 비어있지 않을 때
     max_score = max(score_list)
     min_score = min(score_list)
     avg = round(sum(score_list) / len(score_list), 2)
+    # 새 딕셔너리를 반환
     return {
         "최고 점수" : max_score,
         "최저 점수" : min_score,
@@ -81,7 +84,8 @@ print()
     # map() 함수와 lambda식을 사용해야 합니다.
 
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
+# filter()를 통해 홀수만 가져오고
+# map()을 통해 각 홀수를 제곱한다.
 odd_squared =list(map(lambda num: num**2, filter(lambda x: x % 2 == 1, numbers)))
 
 print(odd_squared)
@@ -100,6 +104,8 @@ data = ["apple", "banana", "kiwi", "grapefruit", "orange", "melon"]
 
 # 여기에 코드를 작성하세요.
 # reduce() 첫 번째는 누적값, 두번째는 객체에서 가져온 값, 마지막 0은 누적값의 초기화 값
+# filter()를 통해 문자열 길이가 5이상인 문자열만 가져오고
+# reduce()를 통해 걸러진 문자열을 각각 가져와 각 문자열의 길이를 더한다.
 total_length = reduce(lambda length, str : length + len(str), filter(lambda str: len(str) >= 5, data), 0)
 
 print(total_length)
@@ -116,6 +122,8 @@ fruits = ['apple', 'banana', 'cherry', 'grape']
 prices = [1500, 2500, 3000, 1800]
 
 # 여기에 코드를 작성하세요.
+# zip()을 통해 두 리스트를 연결한다.
+# 컴프리헨션을 통해 튜플을 언팩킹하고 조건식을 통해 2000원 이상인 과일만 가져온다.
 expensive_fruits = {fruit : price for fruit, price in zip(fruits, prices) if price >= 2000}
 
 print(expensive_fruits)
@@ -137,6 +145,8 @@ employees = {
 }
 
 # 여기에 코드를 작성하세요.
+# 고객의 연차와 급여의 조건식을 통해 키와 값을 걸러내고
+# 걸러낸 키와 값을 통해 새로운 딕셔너리를 만든다.
 salary_increased_employees = {name : round(info['salary'] * 1.1, 2) for name, info in employees.items() if info["years"] >= 5 and info["salary"] < 6000}
 
 print(salary_increased_employees)
@@ -148,18 +158,25 @@ print(salary_increased_employees)
 # row개 만큼의 숫자를 입력한 뒤 각 숫자만큼 아래에서 쌓기
 
 def bottom_build_star(numbers):
+    # 가장 큰 숫자가 꼭대기에 닿을 수 있다.
     max_num = max(numbers)
+    # level은 최고 숫자 ~  1까지 줄어든다
     for level in range(max_num, 0, -1):
+        # 리스트에서 숫자를 꺼내온다.
         for num in numbers:
+            # 꺼내온 숫자가 현재 레벨이상이면 별표를 쌓을 수 있다.
             if num - level >= 0:
                 print("*", end="")
+            # 꺼내온 숫자가 레벨보다 작으면 별표를 쌓을 수 없다.
             else:
                 print(" ", end="")
         print()
 
-
+# 가로줄(숫자)의 개수
 col = int(input("가로줄의 개수: "))
+# 숫자 리스트
 numbers = []
+# 개수만큼 숫자 입력
 for i in range(col):
     numbers.append(int(input(f"{i+1} 번쩨 숫자 입력: ")))
 bottom_build_star(numbers)
