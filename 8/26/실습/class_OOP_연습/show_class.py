@@ -41,7 +41,7 @@ class Show:
             # value: {'product': Product 인스턴스, 'count': 숫자}
             print(f"{value['product']}, {value['count']}개")
             order_list_is_empty = False
-        # 장바구니에 아무것도 없을 경우
+        # 구매 목록에 아무것도 없을 경우
         if order_list_is_empty:
             print("비어 있습니다.")
 
