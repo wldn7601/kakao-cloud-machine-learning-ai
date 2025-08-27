@@ -5,6 +5,7 @@ counter = 0
 # 락 생성
 counter_Lock = threading.Lock()
 
+# counter에 1을 더하는 함수
 def add_one(times):
     global counter
     for _ in range(times):
