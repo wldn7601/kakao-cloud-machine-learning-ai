@@ -6,6 +6,7 @@ import re
 import pytesseract
 import matplotlib.pyplot as plt
 
+# 샘플 이미지 생성
 def create_sample_image():
     # 흰색 배경 이미지 생성(높이 200, 너비 600, 3채널: RGB)
     image = np.ones((200, 600, 3), dtype=np.uint8) * 255
@@ -18,6 +19,7 @@ def create_sample_image():
     cv2.imwrite('sample_text.jpg', image)
     return image
 
+# 기본 OCR
 def basic_ocr_example():
     # 실제 이미지 경로
     image_path = 'sample_text.jpg'
@@ -93,7 +95,7 @@ def create_low_quality_sample():
     cv2.imwrite('low_quality_sample.jpg', image)
     return image
 
-
+# 품질에 따른 OCR
 def ocr_quality_demo():
 
     # 다양한 품질의 샘플 비교
@@ -134,21 +136,26 @@ def ocr_quality_demo():
 qulaity_results = ocr_quality_demo()
 
 # 결과 시각화
-plt.figure(figsize=(15, 20))
-plt.rc('font', family='Apple SD Gothic Neo')
-plt.subplot(2, 3, 1)
+def visualize():
+    plt.figure(figsize=(15, 20))
+    plt.rc('font', family='Apple SD Gothic Neo')
+    plt.subplot(2, 3, 1)
 
-plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-plt.title('기본 OCR 예제')
-plt.axis('off')
-
-for i, (quality, result) in enumerate(qulaity_results.items(), 2):
-    plt.subplot(2, 3, i)
-
-    plt.imshow(cv2.cvtColor(result['image'], cv2.COLOR_BGR2RGB))
-
-    plt.title(f"{quality.title()}\n신뢰도: {result['confidence']:.2f}%")
+    plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+    plt.title('기본 OCR 예제')
     plt.axis('off')
 
-plt.tight_layout()
-plt.show()
+    for i, (quality, result) in enumerate(qulaity_results.items(), 2):
+        plt.subplot(2, 3, i)
+
+        plt.imshow(cv2.cvtColor(result['image'], cv2.COLOR_BGR2RGB))
+
+        plt.title(f"{quality.title()}\n신뢰도: {result['confidence']:.2f}%")
+        plt.axis('off')
+
+    plt.tight_layout()
+    plt.show()
+    
+
+    
+visualize()
