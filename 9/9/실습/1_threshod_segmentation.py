@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 # 단순 임계값 기반 이미지 세그멘테이션
 def threshold_segmentation_demo():
     # 이미지 로드
